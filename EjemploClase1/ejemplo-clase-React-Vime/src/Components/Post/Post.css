@@ -1,0 +1,57 @@
+.post-container {
+  max-width: 470px;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  margin: 20px auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+}
+
+.post-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.post-username {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.post-image {
+  width: 100%;
+  display: block;
+}
+
+.post-content {
+  padding: 12px;
+}
+
+.post-icons {
+  margin-bottom: 8px;
+  font-size: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.post-likes {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.post-description {
+  font-size: 14px;
+  line-height: 18px;
+}
