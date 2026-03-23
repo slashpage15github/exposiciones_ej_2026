@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Inscripciones{% endblock %}
+{% block content %}
+
+<h2>Inscripciones</h2>
+
+<form method="GET" style="margin:10px 0;">
+  <input name="q" placeholder="Buscar por alumno..." value="{{ q }}">
+  <button type="submit">Buscar</button>
+</form>
+
+<a class="btn p" href="{{ url_for('escuela.inscripcion_create') }}">+ Nueva inscripción</a>
+
+{% if inscripciones %}
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Alumno</th>
+      <th>Curso</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in inscripciones %}
+    <tr>
+      <td>{{ i.id }}</td>
+      <td>{{ i.alumno.matricula }} - {{ i.alumno.nombre }}</td>
+      <td>{{ i.curso.clave }} - {{ i.curso.nombre }}</td>
+      <td>{{ i.estado }}</td>
+      <td>
+        <a class="btn w" href="{{ url_for('escuela.inscripcion_update', inscripcion_id=i.id) }}">Editar</a>
+        <a class="btn d" href="{{ url_for('escuela.inscripcion_delete', inscripcion_id=i.id) }}">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No hay inscripciones.</p>
+{% endif %}
+
+{% endblock %}

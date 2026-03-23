@@ -1,0 +1,13 @@
+{% extends "escuela/base.html" %}
+{% block title %}{{ modo }} alumno{% endblock %}
+
+{% block content %}
+<h2>{{ modo }} alumno</h2>
+
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn s" type="submit">Guardar</button>
+  <a class="btn g" href="{% url 'alumnos_list' %}">Cancelar</a>
+</form>
+{% endblock %}

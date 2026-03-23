@@ -1,0 +1,51 @@
+@startuml Tablas
+' ==========================================
+' ERD - CRUD Escuela (Flask + SQLAlchemy ORM)
+' ==========================================
+
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+
+entity "alumno" as Alumno {
+  * matricula : INT <<PK>>
+  --
+  nombre : VARCHAR(80) <<NOT NULL>>
+  fecha_inscripcion : DATE <<NOT NULL>>
+  orden_dia : INT <<NOT NULL>>
+}
+
+entity "curso" as Curso {
+  * id : INT <<PK>>
+  --
+  clave : VARCHAR(20) <<NOT NULL, UNIQUE>>
+  nombre : VARCHAR(120) <<NOT NULL>>
+  cupo : INT <<NOT NULL>>
+}
+
+entity "inscripcion" as Inscripcion {
+  * id : INT <<PK>>
+  --
+  alumno_matricula : INT <<FK alumno.matricula>>
+  curso_id : INT <<FK curso.id>>
+  estado : VARCHAR(10) <<NOT NULL>>
+}
+
+' Relaciones (Crow's Foot)
+Alumno ||--o{ Inscripcion : "1 alumno\nN inscripciones"
+Curso  ||--o{ Inscripcion : "1 curso\nN inscripciones"
+
+note right of Inscripcion
+  Restricción ÚNICA:
+  (alumno_matricula, curso_id)
+  -> Un alumno NO puede inscribirse
+     dos veces al mismo curso.
+end note
+
+note left of Alumno
+  Matrícula (PK) generada:
+  YYMMDD00 + consecutivo_del_día
+  Ej: 19010871
+end note
+
+@enduml

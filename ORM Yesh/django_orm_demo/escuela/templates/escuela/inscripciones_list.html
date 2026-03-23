@@ -1,0 +1,59 @@
+{% extends "escuela/base.html" %}
+{% block title %}Inscripciones{% endblock %}
+
+{% block content %}
+<h2>Inscripciones</h2>
+
+<form method="GET" style="margin:10px 0;">
+  <input type="text" name="q" placeholder="Buscar por alumno..." value="{{ q }}">
+  <button type="submit">Buscar</button>
+</form>
+
+<a class="btn p" href="{% url 'inscripcion_create' %}">+ Nueva inscripción</a>
+
+{% if page_obj %}
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Alumno</th>
+      <th>Curso</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for i in page_obj %}
+    <tr>
+      <td>{{ i.id }}</td>
+      <td>{{ i.alumno.matricula }} - {{ i.alumno.nombre }}</td>
+      <td>{{ i.curso.clave }} - {{ i.curso.nombre }}</td>
+      <td>{{ i.estado }}</td>
+      <td>
+        <a class="btn w" href="{% url 'inscripcion_update' i.id %}">Editar</a>
+        <a class="btn d" href="{% url 'inscripcion_delete' i.id %}">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div style="margin-top:12px;">
+  {% if page_obj.has_previous %}
+    <a href="?q={{ q }}&page={{ page_obj.previous_page_number }}">⬅ Prev</a>
+  {% endif %}
+
+  <span style="margin:0 10px;">
+    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+  </span>
+
+  {% if page_obj.has_next %}
+    <a href="?q={{ q }}&page={{ page_obj.next_page_number }}">Next ➡</a>
+  {% endif %}
+</div>
+
+{% else %}
+<p>No hay inscripciones.</p>
+{% endif %}
+{% endblock %}

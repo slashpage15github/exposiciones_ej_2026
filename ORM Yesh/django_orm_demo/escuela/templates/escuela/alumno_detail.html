@@ -1,0 +1,21 @@
+{% extends "escuela/base.html" %}
+{% block title %}Detalle alumno{% endblock %}
+
+{% block content %}
+<h2>Alumno: {{ alumno.nombre }}</h2>
+
+<p><strong>Total acumulado (inscripciones):</strong> ${{ total_inscripciones }}</p>
+
+<h3>Inscripciones</h3>
+{% if inscripciones %}
+  <ul>
+    {% for o in inscripciones %}
+      <li>Inscripción #{{ o.id }} — ${{ o.total }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Este alumno no tiene inscripciones.</p>
+{% endif %}
+
+<a class="btn g" href="{% url 'alumnos_list' %}">Volver</a>
+{% endblock %}

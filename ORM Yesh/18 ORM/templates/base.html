@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}CRUD Escuela (Flask ORM){% endblock %}</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f5f5f5; margin:20px; }
+    .box { max-width:950px; margin:auto; background:#fff; padding:20px; border-radius:10px; }
+    nav a { margin-right:12px; text-decoration:none; color:#0d6efd; font-weight:bold; }
+    table { width:100%; border-collapse: collapse; margin-top:10px; }
+    th, td { border:1px solid #ddd; padding:8px; }
+    th { background:#f0f0f0; }
+    .btn { padding:6px 10px; border-radius:6px; text-decoration:none; display:inline-block; }
+    .p { background:#0d6efd; color:white; }
+    .d { background:#dc3545; color:white; }
+    .s { background:#198754; color:white; }
+    .g { background:#6c757d; color:white; }
+    input, select { width:100%; padding:8px; margin:6px 0 12px; }
+    .flash { background:#e7f6ec; border:1px solid #bfe7cb; padding:10px; border-radius:8px; margin:10px 0; }
+    .err { background:#ffe8e8; border:1px solid #f1b5b5; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>CRUD Escuela (Flask + SQLAlchemy ORM)</h1>
+    <nav>
+      <a href="{{ url_for('escuela.inscripciones_list') }}">Inscripciones</a>
+      <a href="{{ url_for('escuela.inscripcion_create') }}">Nueva inscripción</a>
+    </nav>
+    <hr>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for cat, msg in messages %}
+          <div class="flash {% if cat == 'error' %}err{% endif %}">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

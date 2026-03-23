@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Nueva inscripción{% endblock %}
+
+{% block content %}
+<h2>Nueva inscripción</h2>
+
+<form method="POST">
+  <label>Nombre del alumno:</label>
+  <input type="text" name="alumno_nombre"
+         placeholder="Ej. Roberto Yeshua Moreno"
+         value="{{ (form_data.get('alumno_nombre') if form_data else '') }}">
+
+  <label>Curso:</label>
+  <select name="curso_id" required>
+    <option value="">---------</option>
+    {% for c in cursos %}
+      <option value="{{ c.id }}"
+        {% if form_data and form_data.get('curso_id') == (c.id|string) %}selected{% endif %}>
+        {{ c.clave }} - {{ c.nombre }}
+      </option>
+    {% endfor %}
+  </select>
+
+  <label>Estado:</label>
+  <select name="estado">
+    {% set est = (form_data.get('estado') if form_data else 'ACTIVA') %}
+    <option value="ACTIVA" {% if est == 'ACTIVA' %}selected{% endif %}>Activa</option>
+    <option value="BAJA" {% if est == 'BAJA' %}selected{% endif %}>Baja</option>
+  </select>
+
+  <button class="btn s" type="submit">Guardar</button>
+  <a class="btn g" href="{{ url_for('escuela.inscripciones_list') }}">Cancelar</a>
+</form>
+{% endblock %}
