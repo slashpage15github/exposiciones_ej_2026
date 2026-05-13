@@ -1,0 +1,24 @@
+<div class="filter-panel" aria-label="Filtros del mapa">
+    <div class="filter-panel__header">
+        <div>
+            <p class="eyebrow">Filtros interactivos</p>
+            <h2>Filtra por región y tipo de droga</h2>
+        </div>
+        <button type="button" class="filter-reset" id="filter-reset">Restablecer filtros</button>
+    </div>
+    <div class="filter-grid">
+        <label class="filter-field" for="region-filter">
+            <span>Región</span>
+            <select id="region-filter" name="region-filter">
+                <option value="all">Todas las regiones</option>
+            </select>
+        </label>
+        <label class="filter-field" for="drug-filter">
+            <span>Tipo de droga</span>
+            <select id="drug-filter" name="drug-filter">
+                <option value="all">Todos los tipos</option>
+            </select>
+        </label>
+    </div>
+    <p class="filter-status" id="filter-status">Mostrando todos los registros.</p>
+</div>

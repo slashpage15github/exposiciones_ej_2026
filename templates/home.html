@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio | Ejemplos de Geolocalización{% endblock %}
+
+{% block content %}
+<section class="hero-panel">
+	<div class="hero-copy">
+		<p class="eyebrow">Librerías abiertas, contexto mundial</p>
+		<h1>Explora páginas de ejemplo para implementar geolocalización a escala mundial.</h1>
+		<p class="hero-text">
+			Este proyecto está organizado para mantener la ingestión de datos en <strong>db/</strong>, los scripts y
+			los estilos en <strong>static/</strong>, y las páginas de ejemplo en <strong>templates/</strong>. Cada
+			tarjeta abre una demo independiente enfocada en una librería de mapas diferente.
+		</p>
+		<div class="hero-actions">
+			<a class="primary-link" href="{{ url_for('example_page', slug=examples[0]['slug']) }}">Abrir primer ejemplo</a>
+			<a class="secondary-link" href="#project-structure">Ver estructura</a>
+		</div>
+	</div>
+	<div class="hero-aside">
+		<div class="metric-card">
+			<span class="metric-value">{{ examples|length }}</span>
+			<span class="metric-label">páginas de ejemplo</span>
+		</div>
+		<div class="metric-card">
+			<span class="metric-value">1</span>
+			<span class="metric-label">carpeta de datos</span>
+		</div>
+		<div class="metric-card">
+			<span class="metric-value">100%</span>
+			<span class="metric-label">librerías abiertas</span>
+		</div>
+	</div>
+</section>
+
+<section class="section-block">
+	<div class="section-heading">
+		<p class="eyebrow">Ejemplos</p>
+		<h2>Elige una librería de mapas</h2>
+	</div>
+	<div class="card-grid">
+		{% for item in examples %}
+		<article class="feature-card">
+			<p class="card-library">{{ item['library'] }}</p>
+			<h3>{{ item['title'] }}</h3>
+			<p>{{ item['summary'] }}</p>
+			<div class="tag-row">
+				{% for highlight in item['highlights'] %}
+				<span>{{ highlight }}</span>
+				{% endfor %}
+			</div>
+			<a class="card-link" href="{{ url_for('example_page', slug=item['slug']) }}">Abrir página</a>
+		</article>
+		{% endfor %}
+	</div>
+</section>
+
+<section class="section-block info-grid" id="project-structure">
+	<article class="info-card">
+		<p class="eyebrow">Flujo de datos</p>
+		<h2>Dónde viven los datos</h2>
+		<p>
+			La carpeta <strong>db/</strong> contiene la base SQLite con los registros reales de incautaciones. El archivo
+			<strong>path.py</strong> sigue siendo útil para documentar el origen del dataset desde Kaggle y futuras cargas.
+		</p>
+	</article>
+	<article class="info-card">
+		<p class="eyebrow">Flujo de frontend</p>
+		<h2>Dónde viven las implementaciones del mapa</h2>
+		<p>
+			Cada plantilla puede cargar un script dedicado desde <strong>static/</strong>. Eso mantiene aislado el código
+			específico de cada librería y facilita comparar Leaflet, OpenLayers y MapLibre lado a lado.
+		</p>
+	</article>
+</section>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ example['title'] }}{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+{% endblock %}
+
+{% block content %}
+<section class="page-intro">
+    <p class="eyebrow">{{ example['library'] }}</p>
+    <h1>{{ example['title'] }}</h1>
+    <p>{{ example['summary'] }}</p>
+</section>
+
+<section class="map-layout">
+    <article class="info-card map-notes">
+        <h2>Por qué este ejemplo importa</h2>
+        <p>Leaflet es una de las formas más rápidas de publicar un localizador mundial usando teselas de OpenStreetMap y marcadores.</p>
+        <p>Esta vista agrupa los registros reales por país para que los filtros por región y tipo de droga respondan sobre el dataset de la base de datos.</p>
+        {% include "_map_filters.html" %}
+    </article>
+    <div class="map-card">
+        <div id="leaflet-map" class="map-frame" aria-label="Mapa mundial de Leaflet"></div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="{{ url_for('static', filename='seizure-data.js') }}"></script>
+<script src="{{ url_for('static', filename='filter-controls.js') }}"></script>
+<script src="{{ url_for('static', filename='leaflet.js') }}"></script>
+{% endblock %}

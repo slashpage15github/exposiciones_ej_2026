@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ example['title'] }}{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@9.2.4/ol.css">
+{% endblock %}
+
+{% block content %}
+<section class="page-intro">
+    <p class="eyebrow">{{ example['library'] }}</p>
+    <h1>{{ example['title'] }}</h1>
+    <p>{{ example['summary'] }}</p>
+</section>
+
+<section class="map-layout">
+    <article class="info-card map-notes">
+        <h2>Por qué este ejemplo importa</h2>
+        <p>OpenLayers es útil cuando el proyecto necesita capacidades SIG más sólidas, mejor manejo de capas y más control sobre proyecciones.</p>
+        <p>Esta vista sigue el enfoque oficial de OpenLayers para mapa base y popups, mostrando marcadores por país con datos reales agregados desde SQLite.</p>
+        {% include "_map_filters.html" %}
+    </article>
+    <div class="map-card">
+        <div id="openlayers-map" class="map-frame" aria-label="Mapa mundial de OpenLayers"></div>
+        <div id="openlayers-popup" class="ol-popup" hidden>
+            <a href="#" id="openlayers-popup-closer" class="ol-popup-closer" aria-label="Cerrar"></a>
+            <div id="openlayers-popup-content"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/ol@9.2.4/dist/ol.js"></script>
+<script src="{{ url_for('static', filename='seizure-data.js') }}"></script>
+<script src="{{ url_for('static', filename='filter-controls.js') }}"></script>
+<script src="{{ url_for('static', filename='openlayers.js') }}"></script>
+{% endblock %}

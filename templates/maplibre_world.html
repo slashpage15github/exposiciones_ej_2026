@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ example['title'] }}{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+{% endblock %}
+
+{% block content %}
+<section class="page-intro">
+    <p class="eyebrow">{{ example['library'] }}</p>
+    <h1>{{ example['title'] }}</h1>
+    <p>{{ example['summary'] }}</p>
+</section>
+
+<section class="map-layout">
+    <article class="info-card map-notes">
+        <h2>Por qué este ejemplo importa</h2>
+        <p>MapLibre es una buena opción para mapas muy interactivos, guiados por estilos y con zoom fluido usando WebGL.</p>
+        <p>Este ejemplo mantiene una base abierta y sin API key, pero ya trabaja con los datos reales agregados por país.</p>
+        {% include "_map_filters.html" %}
+    </article>
+    <div class="map-card">
+        <div id="maplibre-map" class="map-frame" aria-label="Mapa mundial de MapLibre"></div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="{{ url_for('static', filename='seizure-data.js') }}"></script>
+<script src="{{ url_for('static', filename='filter-controls.js') }}"></script>
+<script src="{{ url_for('static', filename='maplibre.js') }}"></script>
+{% endblock %}

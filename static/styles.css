@@ -1,0 +1,479 @@
+:root {
+    --bg: #f4efe6;
+    --surface: rgba(255, 250, 244, 0.86);
+    --surface-strong: #fff8ef;
+    --ink: #102542;
+    --muted: #5f6b7a;
+    --accent: #d95d39;
+    --accent-soft: #f2c14e;
+    --line: rgba(16, 37, 66, 0.12);
+    --shadow: 0 24px 80px rgba(16, 37, 66, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--ink);
+    font-family: "Space Grotesk", sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(217, 93, 57, 0.18), transparent 28%),
+        radial-gradient(circle at right center, rgba(242, 193, 78, 0.24), transparent 22%),
+        linear-gradient(180deg, #f7f1e8 0%, #efe7db 100%);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.page-shell {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 24px 0 48px;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: rgba(255, 248, 239, 0.72);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-mark {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: #fff;
+    font-weight: 700;
+}
+
+.brand-copy,
+.site-nav a,
+.eyebrow,
+.tag-row span,
+.metric-label,
+.card-library {
+    font-family: "IBM Plex Mono", monospace;
+}
+
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.site-nav a {
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+}
+
+.hero-panel,
+.section-block,
+.page-intro,
+.map-layout,
+.info-card,
+.feature-card,
+.map-card {
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.hero-panel {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    padding: 32px;
+}
+
+.hero-copy h1,
+.page-intro h1,
+.section-heading h2,
+.info-card h2,
+.feature-card h3 {
+    margin: 0;
+    line-height: 1.04;
+}
+
+.hero-copy h1 {
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    max-width: 12ch;
+}
+
+.hero-text,
+.page-intro p,
+.feature-card p,
+.info-card p,
+.map-notes p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.eyebrow {
+    margin: 0 0 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-size: 0.8rem;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.primary-link,
+.secondary-link,
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 18px;
+    border-radius: 999px;
+    font-weight: 500;
+}
+
+.primary-link,
+.card-link {
+    background: var(--ink);
+    color: #fff;
+}
+
+.secondary-link {
+    border: 1px solid var(--line);
+}
+
+.hero-aside {
+    display: grid;
+    gap: 16px;
+}
+
+.metric-card,
+.feature-card,
+.info-card {
+    padding: 22px;
+    background: var(--surface-strong);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+}
+
+.metric-value {
+    display: block;
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+
+.metric-label {
+    color: var(--muted);
+}
+
+.section-block,
+.page-intro,
+.map-layout {
+    margin-top: 24px;
+    padding: 28px;
+}
+
+.card-grid,
+.info-grid {
+    display: grid;
+    gap: 18px;
+}
+
+.card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 22px;
+}
+
+.tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0 22px;
+}
+
+.tag-row span {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(242, 193, 78, 0.24);
+    color: var(--ink);
+    font-size: 0.78rem;
+}
+
+.page-intro {
+    padding-bottom: 18px;
+}
+
+.page-intro h1 {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+.map-layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 340px) 1fr;
+    gap: 18px;
+    align-items: stretch;
+}
+
+.map-card {
+    padding: 12px;
+    position: relative;
+}
+
+.basemap-control {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 800;
+    display: grid;
+    gap: 6px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255, 248, 239, 0.94);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 24px rgba(16, 37, 66, 0.18);
+}
+
+.basemap-control__label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.basemap-control__select {
+    appearance: none;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fffdf9;
+    color: var(--ink);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8rem;
+    padding: 8px 10px;
+    min-width: 196px;
+}
+
+.map-debug-panel {
+    position: absolute;
+    left: 24px;
+    bottom: 24px;
+    z-index: 800;
+    max-width: min(420px, calc(100% - 48px));
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: rgba(16, 37, 66, 0.9);
+    color: #f8efe2;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    line-height: 1.45;
+}
+
+.map-debug-panel strong {
+    display: inline-block;
+    margin-bottom: 3px;
+    color: #f2c14e;
+}
+
+
+.map-marker-bubble {
+    border: 2px solid #102542;
+    border-radius: 999px;
+    background: rgba(217, 93, 57, 0.78);
+    box-shadow: 0 10px 24px rgba(16, 37, 66, 0.22);
+}
+
+.filter-panel {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+}
+
+.filter-panel__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.filter-panel__header h2 {
+    font-size: 1.2rem;
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+    align-items: start;
+}
+
+.filter-field {
+    display: grid;
+    gap: 8px;
+    justify-items: start;
+    color: var(--muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85rem;
+}
+
+.filter-field select,
+.filter-reset {
+    appearance: none;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: #fffdf9;
+    color: var(--ink);
+    font: inherit;
+}
+
+.filter-field select {
+    padding: 12px 14px;
+    width: min(100%, 320px);
+    max-width: 100%;
+}
+
+.filter-reset {
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.filter-status {
+    margin: 14px 0 0;
+    color: var(--muted);
+}
+
+.map-frame {
+    width: 100%;
+    min-height: 560px;
+    border-radius: 22px;
+}
+
+#maplibre-map .maplibregl-popup-content {
+    font-family: "Space Grotesk", sans-serif;
+}
+
+#openlayers-map .ol-viewport,
+#openlayers-map canvas {
+    border-radius: 22px;
+}
+
+#openlayers-map {
+    position: relative;
+    overflow: hidden;
+    background: #d7e3ec;
+}
+
+.ol-popup {
+    position: absolute;
+    min-width: 260px;
+    max-width: min(320px, calc(100% - 32px));
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255, 248, 239, 0.96);
+    box-shadow: 0 18px 48px rgba(16, 37, 66, 0.2);
+    bottom: 28px;
+    left: 20px;
+    z-index: 10;
+}
+
+.ol-popup[hidden] {
+    display: none;
+}
+
+.ol-popup p {
+    margin: 8px 0 0;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.ol-popup-closer {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.ol-popup-closer::after {
+    content: "×";
+}
+
+@media (max-width: 900px) {
+    .site-header,
+    .hero-panel,
+    .map-layout,
+    .card-grid,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .site-header {
+        display: grid;
+    }
+}
+
+@media (max-width: 680px) {
+    .page-shell {
+        width: min(100% - 20px, 1180px);
+    }
+
+    .site-header,
+    .hero-panel,
+    .section-block,
+    .page-intro,
+    .map-layout {
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .map-frame {
+        min-height: 420px;
+    }
+
+    .basemap-control {
+        position: static;
+        margin: 0 0 10px;
+    }
+
+    .map-debug-panel {
+        position: static;
+        max-width: 100%;
+        margin: 0 0 10px;
+    }
+
+    .filter-grid,
+    .filter-panel__header {
+        grid-template-columns: 1fr;
+        display: grid;
+    }
+}
